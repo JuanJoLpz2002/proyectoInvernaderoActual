@@ -1,0 +1,1675 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0.2",
+        "title": "REST API INVERNADERO",
+        "description": "<html><body>Documentacion del proyecto del <b>INVERNADERO</b></body></html>",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "3.18.8.237",
+    "basePath": "",
+    "tags": [
+        {
+            "name": "Usuarios",
+            "description": "API para obtener información de los usuarios del invernadero"
+        },
+        {
+            "name": "Plantas",
+            "description": "API para obtener información de las plantas del invernadero"
+        },
+        {
+            "name": "Roles",
+            "description": "API para obtener información de los roles del invernadero"
+        },
+        {
+            "name": "Tipos",
+            "description": "API para obtener información de los tipos de plantas del invernadero"
+        },
+        {
+            "name": "Inventario",
+            "description": "API para obtener información del inventario de las plantas del invernadero"
+        },
+        {
+            "name": "Carrito",
+            "description": "API para obtener información del inventario de las plantas del invernadero"
+        },
+        {
+            "name": "Ventas",
+            "description": "API para obtener información del inventario de las plantas del invernadero"
+        },
+        {
+            "name": "Cuidados",
+            "description": "API para obtener información del inventario de las plantas del invernadero"
+        },
+        {
+            "name": "Usuarios_Ventas",
+            "description": "API para obtener información del inventario de las plantas del invernadero"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/api/usuarios/mostrarTodosUsuarios/": {
+            "get": {
+                "tags": ["Usuarios"],
+                "summary": "Listado de todos los usuarios que existen en el invernadero.",
+                "description": "<p>Servicio que devuelve la información detallada de todos los usuarios que existen en el invernadero.</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los usuarios existentes en el invernadero?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": 2,
+                                    "nombre": "Juan José López Guevara",
+                                    "usuario": "Wawavara",
+                                    "contrasena": "1234",
+                                    "correo": "sise@gmail.com",
+                                    "id_Rol": 1
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Usuarios"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }]
+            }
+        },
+        "/api/Usuarios/crearUsuario": {
+            "post": {
+                "summary": "Creando un nuevo usuario",
+                "operationId": "create",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "Usuario",
+                        "in": "body",
+                        "description": "Usuario agregado",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NuevoUsuario"
+                        }
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "tags": ["Usuarios"],
+                "responses": {
+                    "200": {
+                        "description": "Insertado con exito"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/usuarios/obtenerUsuario/{id}": {
+            "get": {
+                "tags": ["Usuarios"],
+                "summary": "Obtener informacion de un usuario en especifico por medio de su ID si es que existe en el invernadero",
+                "description": "<p>Servicio que devuelve la información detallada del usuario soliciado</p><p>&nbsp;</p><p><em><strong>¿Cuál es la informacion del usuario asociado a este id?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": 4,
+                                    "nombre": "Angel Cruz",
+                                    "correo": "Angel@gmail.com",
+                                    "id_Rol": 4,
+                                    "contrasena": "789*"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Usuario"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "identificador del usuario",
+                        "type": "number",
+                        "default": "4"
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ]
+            }
+        },
+        "/api/usuarios/actualizarUsuario/{id}": {
+            "put": {
+                "summary": "Actualizar la informaciòn del usuario del invernadero",
+                "description": "<p>Servicio que permite editar la informaciòn del usuario de invernadero, dado el id el mismo </p><p>&nbsp;</p>",
+                "operationId": "update",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "identificador del usuario",
+                        "type": "number",
+                        "default": "4"
+                    },
+                    {
+                        "name": "Usuario",
+                        "in": "body",
+                        "description": "Nombre del usuario",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NuevoUsuario"
+                        }
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "tags": ["Usuarios"],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/usuarios/eliminarUsuario/{id}": {
+            "delete": {
+                "tags": ["Usuarios"],
+                "summary": "Eliminar el usuario del invernadero dado su identificador",
+                "description": "<p>Servicio que elimina el usuario dado el identificador </p><p>&nbsp;</p><p><em><strong>¿Fué una ejecución exitosa?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "identificador del usuario",
+                        "type": "number",
+                        "default": "8"
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ]
+            }
+        },
+        "/api/plantas/MostrarTodasPlantas/": {
+            "get": {
+                "tags": ["Plantas"],
+                "summary": "Listado de todas las plantas que existen en el invernadero",
+                "description": "<p>Servicio que devuelve la información detallada de todas las plantas que existen en el invernadero.</p><p>&nbsp;</p><p><em><strong>¿Cuáles son las plantas que hay en el invernadero?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": 2,
+                                    "nombre": "rosal",
+                                    "precio": "20.89",
+                                    "descripcion": "desc rosa",
+                                    "id_tipo": "2"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Plantas"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }]
+            }
+        },
+        "/api/plantas/agregarPlanta": {
+            "post": {
+                "summary": "Agregando una Planta Nueva",
+                "operationId": "create",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "Planta",
+                        "in": "body",
+                        "description": "Planta agregada",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NuevaPlanta"
+                        }
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "tags": ["Plantas"],
+                "responses": {
+                    "200": {
+                        "description": "Insertada con exito"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/plantas/obtenerPlanta/{id}": {
+            "get": {
+                "tags": ["Plantas"],
+                "summary": "Informacion asociada a la planta solicitada con su ID, si es que existe en el Invernadero",
+                "description": "<p>Servicio que devuelve la información detallada de la planta soliciada</p><p>&nbsp;</p><p><em><strong>¿Cuál es la informacion de la planta de este id?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": 2,
+                                    "nombre": "rosal",
+                                    "precio": "20.89",
+                                    "descripcion": "desc rosa",
+                                    "id_tipo": "2"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Planta"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "identificador de la planta",
+                        "type": "number",
+                        "default": "1"
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ]
+            }
+        },
+        "/api/plantas/actualizarPlanta/{id}": {
+            "put": {
+                "summary": "Actualizar la informaciòn de una planta del invernadero por medio de su ID",
+                "description": "<p>Servicio que permite editar la informaciòn de una planta del invernadero, dado su ID </p><p>&nbsp;</p>",
+                "operationId": "update",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "identificador de la planta",
+                        "type": "number",
+                        "default": "4"
+                    },
+                    {
+                        "name": "Planta",
+                        "in": "body",
+                        "description": "Nombre de la planta",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NuevaPlanta"
+                        }
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "tags": ["Plantas"],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/plantas/eliminarPlanta/{id}": {
+            "delete": {
+                "tags": ["Plantas"],
+                "summary": "Eliminar planta del invernadero dado su identificador",
+                "description": "<p>Servicio que elimina una planta dado el identificador enviado</p><p>&nbsp;</p><p><em><strong>¿Fué una ejecución exitosa?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "identificador de la planta",
+                        "type": "number",
+                        "default": "8"
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ]
+            }
+        },
+        "/api/roles/MostrarTodosRoles/": {
+            "get": {
+                "tags": ["Roles"],
+                "summary": "Listado de todos los roles que existen en el invernadero.",
+                "description": "<p>Servicio que devuelve la información detallada de todos los roles que existen en el invernadero.</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los roles existentes en el invernadero?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_rol": 1,
+                                    "nombre_rol": "Administrador"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Roles"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }]
+            }
+        },
+        "/api/roles/crearRol": {
+            "post": {
+                "summary": "Creando Nuevo Rol",
+                "operationId": "create",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "Rol",
+                        "in": "body",
+                        "description": "Rol agregado",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NuevoRol"
+                        }
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "tags": ["Roles"],
+                "responses": {
+                    "200": {
+                        "description": "Insertado con exito"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/roles/obtenerRol/{id}": {
+            "get": {
+                "tags": ["Roles"],
+                "summary": "Informacion asociada al rol si existe en el Invernadero",
+                "description": "<p>Servicio que devuelve la información detallada del rol soliciado</p><p>&nbsp;</p><p><em><strong>¿Cuál es el rol de este id?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_rol": 1,
+                                    "nombre_rol": "Administrador"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Rol"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "identificador del rol",
+                        "type": "number",
+                        "default": "1"
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ]
+            }
+        },
+        "/api/roles/actualizarRol/{id}": {
+            "put": {
+                "summary": "Actualizar la informaciòn del rol del invernadero",
+                "description": "<p>Servicio que permite editar la informaciòn del rol de invernadero, dado el id del mismo </p><p>&nbsp;</p>",
+                "operationId": "update",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "identificador del rol",
+                        "type": "number",
+                        "default": "4"
+                    },
+                    {
+                        "name": "Rol",
+                        "in": "body",
+                        "description": "Nombre del rol",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NuevoRol"
+                        }
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "tags": ["Roles"],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/roles/eliminarRol/{id}": {
+            "delete": {
+                "tags": ["Roles"],
+                "summary": "Eliminar rol del invernadero dado su identificador",
+                "description": "<p>Servicio que elimina un rol dado el identificador enviado</p><p>&nbsp;</p><p><em><strong>¿Fué una ejecución exitosa?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "identificador del rol",
+                        "type": "number",
+                        "default": "4"
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ]
+            }
+        },
+        "/api/tipo/mostrarTodosTipos/": {
+            "get": {
+                "tags": ["Tipos"],
+                "summary": "Listado de todos los tipos de plantas que existen en el invernadero.",
+                "description": "<p>Servicio que devuelve la información detallada de todos los tipos que existen en el invernadero.</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los tipos de plantas que hay en el Invernadero?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_tipo": 2,
+                                    "nombre_tipo": "flor"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Tipos"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }]
+            }
+        },
+        "/api/tipo/crearTipo": {
+            "post": {
+                "summary": "Creando un Nuevo Tipo de Planta",
+                "operationId": "create",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "Tipo",
+                        "in": "body",
+                        "description": "Tipo agregado",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NuevoTipo"
+                        }
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "tags": ["Tipos"],
+                "responses": {
+                    "200": {
+                        "description": "Insertado con exito"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/tipo/obtenerTipo/{id}": {
+            "get": {
+                "tags": ["Tipos"],
+                "summary": "Informacion asociada al tipo de planta si existe en el Invernadero",
+                "description": "<p>Servicio que devuelve la información detallada del tipo de planta soliciado</p><p>&nbsp;</p><p><em><strong>¿Cuál es el tipo de planta de este id?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_tipo": 2,
+                                    "nombre_tipo": "flor"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Tipo"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "identificador del tipo",
+                        "type": "number",
+                        "default": "3"
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ]
+            }
+        },
+        "/api/tipo/actualizarTipo/{id}": {
+            "put": {
+                "summary": "Actualizar la informaciòn del tipo de planta del invernadero",
+                "description": "<p>Servicio que permite editar la informaciòn del tipo de planta del invernadero, dado el id el mismo </p><p>&nbsp;</p>",
+                "operationId": "update",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "identificador del tipo de planta",
+                        "type": "number",
+                        "default": "4"
+                    },
+                    {
+                        "name": "Tipo",
+                        "in": "body",
+                        "description": "Nombre del tipo de planta",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NuevoTipo"
+                        }
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "tags": ["Tipos"],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/tipo/eliminarTipo/{id}": {
+            "delete": {
+                "tags": ["Tipos"],
+                "summary": "Eliminar tipo de planta del invernadero dado su identificador",
+                "description": "<p>Servicio que elimina un tipo de planta dado el identificador enviado</p><p>&nbsp;</p><p><em><strong>¿Fué una ejecución exitosa?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "identificador del tipo",
+                        "type": "number",
+                        "default": "6"
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ]
+            }
+        },
+        "/api/inventario/mostrarInventario/": {
+            "get": {
+                "tags": ["Inventario"],
+                "summary": "Listado del inventario de plantas que en existencia y sus unidades disponibles",
+                "description": "<p>Servicio que devuelve la información del stock existente de todas las plantas.</p><p>&nbsp;</p><p><em><strong>¿Cuáles y cuantas plantas hay en el Inventario?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_planta": 2,
+                                    "unidades": "79"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/ModeloInventario"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }]
+            }
+        },
+        "/api/inventario/agregarTInventario": {
+            "post": {
+                "summary": "Servicio que agrega las unidades deseadas de la Planta",
+                "operationId": "create",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "Tupla",
+                        "in": "body",
+                        "description": "Tupla agregada",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ModeloInventario"
+                        }
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "tags": ["Inventario"],
+                "responses": {
+                    "200": {
+                        "description": "Insertado con exito"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/inventario/obtenerCantidad/{id}": {
+            "get": {
+                "tags": ["Inventario"],
+                "summary": "Obtener la cantidad de unidades disponibles de cada planta por medio de su ID",
+                "description": "<p>Servicio que devuelve las unidades disponibles de cada planta por medio de su ID</p><p>&nbsp;</p><p><em><strong>¿Cuantas unidades disponibles hay de esta planta?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_tipo": 2,
+                                    "unidades": "79"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/ModeloInventario"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "identificador de la planta",
+                        "type": "number",
+                        "default": "3"
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ]
+            }
+        },
+        "/api/inventario/actualizarCantidad/{id}": {
+            "put": {
+                "summary": "Actualizar las unidades disponibles de cada planta en caso de que se hayan agregado o quitado unidades por error.",
+                "description": "<p>Servicio que permite editar las unidades disponibles de cada planta dado su ID </p><p>&nbsp;</p>",
+                "operationId": "update",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "identificador del tipo de planta",
+                        "type": "number",
+                        "default": "4"
+                    },
+                    {
+                        "name": "Cantidad",
+                        "in": "body",
+                        "description": "Cantidad de plantas",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NuevoMInventario"
+                        }
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "tags": ["Inventario"],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/carrito/mostrarCarrito/": {
+            "get": {
+                "tags": ["Carrito"],
+                "summary": "Listado de todos los carritos existentes de todos los usuarios que tengan un carrito.",
+                "description": "<p>Servicio que devuelve los elementos  existentes en cada carrito diferente con su ID de usuario e ID de planta.</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los carritos existentes?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_usuario": 2,
+                                    "id_planta": 1
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/ModeloCarrito"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }]
+            }
+        },
+        "/api/carrito/agregarACarrito": {
+            "post": {
+                "summary": "Agregando una nueva planta al carrito del usuario por medio de su id y el id de la planta",
+                "operationId": "create",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "Tupla",
+                        "in": "body",
+                        "description": "Tupla agregada",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ModeloCarrito"
+                        }
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "tags": ["Carrito"],
+                "responses": {
+                    "200": {
+                        "description": "Insertado con exito"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/carrito/eliminarDeCarrito/{id_usuario}/{id_planta}": {
+            "delete": {
+                "tags": ["Carrito"],
+                "summary": "Eliminar un elemento x del carrito de un usuario saleccionado con su id de usuario e id de la planta a borrar",
+                "description": "<p>Servicio que elimina el elemento del carrito dado el identificador de la planta e id de usuario dueño del carrrito</p><p>&nbsp;</p><p><em><strong>¿Que planta quieres eliminar y de cual carrito?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id_usuario",
+                        "in": "path",
+                        "required": true,
+                        "description": "identificador del usuario",
+                        "type": "number",
+                        "default": "1"
+                    },
+                    {
+                        "name": "id_planta",
+                        "in": "path",
+                        "required": true,
+                        "description": "identificador de la planta",
+                        "type": "number",
+                        "default": "2"
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ]
+            }
+        },
+        "/api/ventas/mostrarVentas/": {
+            "get": {
+                "tags": ["Ventas"],
+                "summary": "Listado de todas las ventas del invernadero.",
+                "description": "<p>Servicio que devuelve la información detallada de todas las ventas realizadas en el invernadero.</p><p>&nbsp;</p><p><em><strong>¿Cuáles son todas las ventas del invernadero?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_venta": 1,
+                                    "id_usuario": 2,
+                                    "total": 8500,
+                                    "fecha": "2023-12-05"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Venta"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }]
+            }
+        },
+        "/api/ventas/agregarVenta": {
+            "post": {
+                "summary": "Agregando una Venta",
+                "operationId": "create",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "Venta",
+                        "in": "body",
+                        "description": "Venta agregada",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NuevaVenta"
+                        }
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "tags": ["Ventas"],
+                "responses": {
+                    "200": {
+                        "description": "Insertada con exito"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/ventas/obtenerVentasporUsuario/{id}": {
+            "get": {
+                "tags": ["Ventas"],
+                "summary": "Servicio que regresa todas las ventas por usuario",
+                "description": "<p>Servicio que devuelve la información detallada de las ventas de un usuario solicitado por su ID</p><p>&nbsp;</p><p><em><strong>¿Cuantas compras a realizado este usuario?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_venta": 1,
+                                    "id_usuario": 2,
+                                    "total": 8500,
+                                    "fecha": "2023-12-05"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/NuevaVenta"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "identificador del usuario",
+                        "type": "number",
+                        "default": "6"
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ]
+            }
+        },
+        "/api/cuidados/mostrarCuidados/": {
+            "get": {
+                "tags": ["Cuidados"],
+                "summary": "Listado de los cuidados de todas las plantas que existen en el invernadero.",
+                "description": "<p>Servicio que devuelve los cuidados necesarios para cada planta existente en el invernadero.</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los cuidados de las plantas del invernadero?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_venta": 1,
+                                    "cuidados": "Se cuida de esta manera"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Cuidado"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }]
+            }
+        },
+        "/api/cuidados/agregarCuidado": {
+            "post": {
+                "summary": "Agregando un Nuevo Cuidado",
+                "operationId": "create",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "Cuidado",
+                        "in": "body",
+                        "description": "Cuidado agregado",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NuevoCuidado"
+                        }
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "tags": ["Cuidados"],
+                "responses": {
+                    "200": {
+                        "description": "Insertado con exito"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/cuidados/obtenerCuidado/{id}": {
+            "get": {
+                "tags": ["Cuidados"],
+                "summary": "Cuidado asociado a una planta por medio de su ID",
+                "description": "<p>Servicio que devuelve los cuidados de la planta solicitada por medio de su ID</p><p>&nbsp;</p><p><em><strong>¿Cuales son los cuidados de esta planta?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_planta": 1,
+                                    "cuidado": "Se cuida de esta manera"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Cuidado"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "identificador de la planta",
+                        "type": "number",
+                        "default": "2"
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ]
+            }
+        },
+        "/api/ventas/UsuariosVentas/mostrarVentas/": {
+            "get": {
+                "tags": ["Usuarios_Ventas"],
+                "summary": "Listado de todas las plantas vendidas en todas las compras realizadas por los usuarios",
+                "description": "<p>Servicio que devuelve todas las plantas vendidas en todas las compras con su respectiva informacion.</p><p>&nbsp;</p><p><em><strong>¿Cuáles plantas se vendieron en cada venta?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_venta": 1,
+                                    "id_usuario": 2,
+                                    "total": 8500,
+                                    "fecha": "2023-12-05"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/UsuarioVenta"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }]
+            }
+        },
+        "/api/ventas/UsuariosVentas/mostrarProductosdeV/{id}": {
+            "get": {
+                "tags": ["Usuarios_Ventas"],
+                "summary": "Informacion de las plantas vendidas en la compra seleccionada con su id",
+                "description": "<p>Servicio que devuelve las plantas vendidas en la compra seleccionada por medio de su id compra</p><p>&nbsp;</p><p><em><strong>¿Qué plantas se vendieron en esta compra?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_venta": 1,
+                                    "id_usuario": 2,
+                                    "total": 8500,
+                                    "fecha": "2023-12-05"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/UsuarioVenta"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "identificador del usuario",
+                        "type": "number",
+                        "default": "6"
+                    },
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "bearer",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "Usuario": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "Codigo que permite identificar al usuario"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del usuario"
+                },
+                "usuario": {
+                    "type": "string",
+                    "description": "Nickname del usuario"
+                },
+                "contrasena": {
+                    "type": "string",
+                    "description": "Contrasena del usuario"
+                },
+                "correo": {
+                    "type": "string",
+                    "description": "Correo del usuario"
+                },
+                "id_Rol": {
+                    "type": "number",
+                    "description": "Codigo que permite identificar el rol del usuario"
+                }
+            }
+        },
+        "Usuarios": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Usuario"
+            }
+        },
+        "NuevoUsuario": {
+            "type": "object",
+            "properties": {
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del usuario"
+                },
+                "usuario": {
+                    "type": "string",
+                    "description": "Nickname del usuario"
+                },
+                "contrasena": {
+                    "type": "string",
+                    "description": "Contrasena del usuario"
+                },
+                "correo": {
+                    "type": "string",
+                    "description": "Correo del usuario"
+                },
+                "id_Rol": {
+                    "type": "number",
+                    "description": "Codigo que permite identificar el rol del usuario"
+                }
+            }
+        },
+        "Planta": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "Id de la planta"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre de la planta"
+                },
+                "precio": {
+                    "type": "number",
+                    "description": "Precio de la planta"
+                },
+                "descripcion": {
+                    "type": "string",
+                    "description": "Descripcion de la Planta"
+                },
+                "id_tipo": {
+                    "type": "number",
+                    "description": "Id del tipo de planta"
+                }
+            }
+        },
+        "Plantas": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Planta"
+            }
+        },
+        "NuevaPlanta": {
+            "type": "object",
+            "properties": {
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre de la planta"
+                },
+                "precio": {
+                    "type": "number",
+                    "description": "Precio de la planta"
+                },
+                "descripcion": {
+                    "type": "string",
+                    "description": "Descripcion de la Planta"
+                },
+                "id_tipo": {
+                    "type": "number",
+                    "description": "Id del tipo de planta"
+                }
+            }
+        },
+        "Rol": {
+            "type": "object",
+            "properties": {
+                "id_rol": {
+                    "type": "number",
+                    "description": "Codigo que permite identificar al rol"
+                },
+                "nombre_rol": {
+                    "type": "string",
+                    "description": "Nombre del rol"
+                }
+            }
+        },
+        "Roles": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Rol"
+            }
+        },
+        "NuevoRol": {
+            "type": "object",
+            "properties": {
+                "nombre_rol": {
+                    "type": "string",
+                    "description": "Nombre del rol"
+                }
+            }
+        },
+        "Tipo": {
+            "type": "object",
+            "properties": {
+                "id_tipo": {
+                    "type": "number",
+                    "description": "Codigo que permite identificar al tipo"
+                },
+                "nombre_tipo": {
+                    "type": "string",
+                    "description": "Nombre del tipo"
+                }
+            }
+        },
+        "Tipos": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Tipo"
+            }
+        },
+        "NuevoTipo": {
+            "type": "object",
+            "properties": {
+                "nombre_tipo": {
+                    "type": "string",
+                    "description": "Nombre del tipo"
+                }
+            }
+        },
+        "ModeloInventario": {
+            "type": "object",
+            "properties": {
+                "id_planta": {
+                    "type": "number",
+                    "description": "Codigo que permite identificar la planta"
+                },
+                "unidades": {
+                    "type": "number",
+                    "description": "Numero de unidades disponibles de la planta"
+                }
+            }
+        },
+        "NuevoMInventario": {
+            "type": "object",
+            "properties": {
+                "unidades": {
+                    "type": "number",
+                    "description": "Numero de unidades disponibles  de la planta"
+                }
+            }
+        },
+        "ModeloCarrito": {
+            "type": "object",
+            "properties": {
+                "id_usuario": {
+                    "type": "number",
+                    "description": "ID que identifica al usuario del Carrito"
+                },
+                "id_planta": {
+                    "type": "number",
+                    "description": "Codigo que permite identificar la planta"
+                }
+            }
+        },
+        "Venta": {
+            "type": "object",
+            "properties": {
+                "id_venta": {
+                    "type": "number",
+                    "description": "Codigo que identifica el id de la venta"
+                },
+                "id_usuario": {
+                    "type": "number",
+                    "description": "ID que identifica al usuario de la venta"
+                },
+                "total": {
+                    "type": "number",
+                    "description": "Precio total de la venta "
+                },
+                "fecha": {
+                    "type": "string",
+                    "description": "Fecha de la venta (YYYY-MM-DD)"
+                }
+            }
+        },
+        "NuevaVenta": {
+            "type": "object",
+            "properties": {
+                "id_usuario": {
+                    "type": "number",
+                    "description": "ID que identifica al usuario de la venta"
+                },
+                "total": {
+                    "type": "number",
+                    "description": "Precio total de la venta "
+                },
+                "fecha": {
+                    "type": "string",
+                    "description": "Fecha de la venta (YYYY-MM-DD)"
+                }
+            }
+        },
+        "Cuidado": {
+            "type": "object",
+            "properties": {
+                "id_planta": {
+                    "type": "number",
+                    "description": "Identificador de la planta"
+                },
+                "Cuidado": {
+                    "type": "string",
+                    "description": "Descripcion de como cuidar esta planta"
+                }
+            }
+        },
+        "NuevoCuidado": {
+            "type": "object",
+            "properties": {
+                "id_planta": {
+                    "type": "number",
+                    "description": "Identificador de la planta"
+                },
+                "cuidados": {
+                    "type": "string",
+                    "description": "Descripcion de como cuidar esta planta"
+                }
+            }
+        },
+        "UsuarioVenta": {
+            "type": "object",
+            "properties": {
+                "id_venta": {
+                    "type": "number",
+                    "description": "Codigo que identifica el id de la venta"
+                },
+                "id_usuario": {
+                    "type": "number",
+                    "description": "ID que identifica al usuario de la venta"
+                },
+                "id_planta": {
+                    "type": "number",
+                    "description": "ID que identifica a la planta de la venta"
+                },
+                "precio": {
+                    "type": "number",
+                    "description": "Precio de la planta"
+                }
+            }
+        }
+    }
+}
