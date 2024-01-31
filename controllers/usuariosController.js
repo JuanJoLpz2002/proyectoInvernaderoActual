@@ -75,12 +75,12 @@ class UsuariosController {
         return __awaiter(this, void 0, void 0, function* () {
             //console.log(req.body)
             const parametros = req.body;
-            var consulta = `SELECT id_Rol, correo FROM usuarios WHERE correo = '${parametros.correo}' AND contrasena = '${parametros.contrasena}'`;
+            var consulta = `SELECT * FROM usuarios WHERE correo = '${parametros.correo}' AND contrasena = '${parametros.contrasena}'`;
             const resp = yield database_1.default.query(consulta);
             if (resp.length > 0)
                 res.json(resp);
             else
-                res.json({ "id_Rol": "-1" });
+                res.json({ "id_rol": "-1" });
             //res.json(null);
             //console.log(consulta);
         });

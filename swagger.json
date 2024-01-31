@@ -14,7 +14,7 @@
     "tags": [
         {
             "name": "Usuarios",
-            "description": "API para obtener información de los usuarios del invernadero"
+            "description": " API para obtener información de los usuarios del invernadero"
         },
         {
             "name": "Plantas",
@@ -87,13 +87,7 @@
                         "description": "Prohibido"
                     }
                 },
-                "parameters": [{
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
-                    }]
+                "parameters": []
             }
         },
         "/api/Usuarios/crearUsuario": {
@@ -110,13 +104,6 @@
                         "schema": {
                             "$ref": "#/definitions/NuevoUsuario"
                         }
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ],
                 "tags": ["Usuarios"],
@@ -165,13 +152,6 @@
                         "description": "identificador del usuario",
                         "type": "number",
                         "default": "4"
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ]
             }
@@ -200,13 +180,6 @@
                         "schema": {
                             "$ref": "#/definitions/NuevoUsuario"
                         }
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ],
                 "tags": ["Usuarios"],
@@ -241,15 +214,47 @@
                         "description": "identificador del usuario",
                         "type": "number",
                         "default": "8"
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ]
+            }
+        },
+        "/api/usuarios/ValidarUsuario/": {
+            "post": {
+                "tags": ["Usuarios"],
+                "summary": "Listado de todos los usuarios que existen en la Licoreria.",
+                "description": "<p>Servicio que devuelve la información detallada de todos los usuarios que existen en la Licoreria.</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los usuarios existentes en la Licoreria?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": 2,
+                                    "nombre": "Jesus Rolando",
+                                    "usuario": "maiiki",
+                                    "contrasena": "1101",
+                                    "correo": "hola@gmail.com",
+                                    "id_Rol": 1
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Usuarios"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                        "name": "Correo y Contrasena",
+                        "in": "body",
+                        "description": "Validar Usuario",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ValidarUsuario"
+                        }
+                    }]
             }
         },
         "/api/plantas/MostrarTodasPlantas/": {
@@ -279,13 +284,7 @@
                         "description": "Prohibido"
                     }
                 },
-                "parameters": [{
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
-                    }]
+                "parameters": []
             }
         },
         "/api/plantas/agregarPlanta": {
@@ -302,13 +301,6 @@
                         "schema": {
                             "$ref": "#/definitions/NuevaPlanta"
                         }
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ],
                 "tags": ["Plantas"],
@@ -357,13 +349,6 @@
                         "description": "identificador de la planta",
                         "type": "number",
                         "default": "1"
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ]
             }
@@ -392,13 +377,6 @@
                         "schema": {
                             "$ref": "#/definitions/NuevaPlanta"
                         }
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ],
                 "tags": ["Plantas"],
@@ -433,13 +411,6 @@
                         "description": "identificador de la planta",
                         "type": "number",
                         "default": "8"
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ]
             }
@@ -468,13 +439,7 @@
                         "description": "Prohibido"
                     }
                 },
-                "parameters": [{
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
-                    }]
+                "parameters": []
             }
         },
         "/api/roles/crearRol": {
@@ -491,13 +456,6 @@
                         "schema": {
                             "$ref": "#/definitions/NuevoRol"
                         }
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ],
                 "tags": ["Roles"],
@@ -543,13 +501,6 @@
                         "description": "identificador del rol",
                         "type": "number",
                         "default": "1"
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ]
             }
@@ -578,13 +529,6 @@
                         "schema": {
                             "$ref": "#/definitions/NuevoRol"
                         }
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ],
                 "tags": ["Roles"],
@@ -619,13 +563,6 @@
                         "description": "identificador del rol",
                         "type": "number",
                         "default": "4"
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ]
             }
@@ -654,13 +591,7 @@
                         "description": "Prohibido"
                     }
                 },
-                "parameters": [{
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
-                    }]
+                "parameters": []
             }
         },
         "/api/tipo/crearTipo": {
@@ -677,13 +608,6 @@
                         "schema": {
                             "$ref": "#/definitions/NuevoTipo"
                         }
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ],
                 "tags": ["Tipos"],
@@ -729,13 +653,6 @@
                         "description": "identificador del tipo",
                         "type": "number",
                         "default": "3"
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ]
             }
@@ -764,13 +681,6 @@
                         "schema": {
                             "$ref": "#/definitions/NuevoTipo"
                         }
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ],
                 "tags": ["Tipos"],
@@ -805,13 +715,6 @@
                         "description": "identificador del tipo",
                         "type": "number",
                         "default": "6"
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ]
             }
@@ -840,13 +743,7 @@
                         "description": "Prohibido"
                     }
                 },
-                "parameters": [{
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
-                    }]
+                "parameters": []
             }
         },
         "/api/inventario/agregarTInventario": {
@@ -863,13 +760,6 @@
                         "schema": {
                             "$ref": "#/definitions/ModeloInventario"
                         }
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ],
                 "tags": ["Inventario"],
@@ -915,13 +805,6 @@
                         "description": "identificador de la planta",
                         "type": "number",
                         "default": "3"
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ]
             }
@@ -950,13 +833,6 @@
                         "schema": {
                             "$ref": "#/definitions/NuevoMInventario"
                         }
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ],
                 "tags": ["Inventario"],
@@ -994,13 +870,7 @@
                         "description": "Prohibido"
                     }
                 },
-                "parameters": [{
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
-                    }]
+                "parameters": []
             }
         },
         "/api/carrito/agregarACarrito": {
@@ -1017,13 +887,6 @@
                         "schema": {
                             "$ref": "#/definitions/ModeloCarrito"
                         }
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ],
                 "tags": ["Carrito"],
@@ -1066,13 +929,6 @@
                         "description": "identificador de la planta",
                         "type": "number",
                         "default": "2"
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ]
             }
@@ -1103,13 +959,7 @@
                         "description": "Prohibido"
                     }
                 },
-                "parameters": [{
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
-                    }]
+                "parameters": []
             }
         },
         "/api/ventas/agregarVenta": {
@@ -1126,13 +976,6 @@
                         "schema": {
                             "$ref": "#/definitions/NuevaVenta"
                         }
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ],
                 "tags": ["Ventas"],
@@ -1180,13 +1023,6 @@
                         "description": "identificador del usuario",
                         "type": "number",
                         "default": "6"
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ]
             }
@@ -1215,13 +1051,7 @@
                         "description": "Prohibido"
                     }
                 },
-                "parameters": [{
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
-                    }]
+                "parameters": []
             }
         },
         "/api/cuidados/agregarCuidado": {
@@ -1238,13 +1068,6 @@
                         "schema": {
                             "$ref": "#/definitions/NuevoCuidado"
                         }
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ],
                 "tags": ["Cuidados"],
@@ -1290,13 +1113,6 @@
                         "description": "identificador de la planta",
                         "type": "number",
                         "default": "2"
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ]
             }
@@ -1327,13 +1143,7 @@
                         "description": "Prohibido"
                     }
                 },
-                "parameters": [{
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
-                    }]
+                "parameters": []
             }
         },
         "/api/ventas/UsuariosVentas/mostrarProductosdeV/{id}": {
@@ -1370,13 +1180,6 @@
                         "description": "identificador del usuario",
                         "type": "number",
                         "default": "6"
-                    },
-                    {
-                        "description": "apiKey",
-                        "type": "string",
-                        "in": "header",
-                        "name": "bearer",
-                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
                     }
                 ]
             }
@@ -1634,6 +1437,19 @@
                 "Cuidado": {
                     "type": "string",
                     "description": "Descripcion de como cuidar esta planta"
+                }
+            }
+        },
+        "ValidarUsuario": {
+            "type": "object",
+            "properties": {
+                "correo": {
+                    "type": "string",
+                    "description": "Correo del usuario"
+                },
+                "contrasena": {
+                    "type": "string",
+                    "description": "Contrasena del usuario"
                 }
             }
         },
