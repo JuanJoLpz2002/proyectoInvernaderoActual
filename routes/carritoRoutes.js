@@ -9,6 +9,7 @@ class UsuariosRoutes {
     }
     config() {
         this.router.get('/mostrarCarrito/', carritoController_1.carritoController.mostrar_carrito);
+        this.router.get('/obtenerCarritoUsuario/:id', carritoController_1.carritoController.listOne);
         this.router.post('/agregarACarrito/', carritoController_1.carritoController.agregarACarrito);
         this.router.delete('/eliminarDeCarrito/:id_usuario/:id_planta', carritoController_1.carritoController.eliminar_de_Carrito);
     }

@@ -30,6 +30,17 @@ class CarritoController {
             //res.json(null);
         });
     }
+    listOne(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const respuesta = yield database_1.default.query('SELECT plantas.id as id_planta, usuarios.nombre as nombre_usuario, plantas.nombre as nombre_planta, plantas.precio FROM carrito JOIN usuarios ON carrito.id_usuario= usuarios.id JOIN plantas ON carrito.id_planta=plantas.id WHERE usuarios.id = ?', [id]);
+            if (respuesta.length > 0) {
+                res.json(respuesta);
+                return;
+            }
+            res.status(404).json({ 'mensaje': 'Planta no encontrada' });
+        });
+    }
     eliminar_de_Carrito(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id_usuario } = req.params;

@@ -42,12 +42,20 @@ class VentasController {
     productosdeV(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const respuesta = yield database_1.default.query('SELECT * FROM usuarios_ventas WHERE id_usuario = ?', [id]);
+            const respuesta = yield database_1.default.query('SELECT plantas.nombre as nombre_producto, usuarios_ventas.precio FROM usuarios_ventas JOIN plantas ON usuarios_ventas.id_planta = plantas.id WHERE id_venta = ?', [id]);
             if (respuesta.length > 0) {
                 res.json(respuesta);
                 return;
             }
             res.status(404).json({ 'mensaje': 'Venta no encontrada' });
+        });
+    }
+    agregarPlantaVenta(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //console.log(req.body)
+            const resp = yield database_1.default.query("INSERT INTO usuarios_ventas set ?", [req.body]);
+            res.json(resp);
+            //res.json(null);
         });
     }
     agregarVenta(req, res) {

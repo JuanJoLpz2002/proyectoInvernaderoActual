@@ -14,6 +14,7 @@ class VentasRoutes {
         ///////////////tabla usuarios ventas/////
         this.router.get('/UsuariosVentas/mostrarVentas/', ventasController_1.ventasController.mostrar_uv);
         this.router.get('/UsuariosVentas/mostrarProductosdeV/:id', ventasController_1.ventasController.productosdeV);
+        this.router.post('/UsuariosVentas/agregarPlantaVenta/', ventasController_1.ventasController.agregarPlantaVenta);
     }
 }
 const ventasRoutes = new VentasRoutes();

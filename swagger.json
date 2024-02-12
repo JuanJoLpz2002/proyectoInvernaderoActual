@@ -900,6 +900,44 @@
                 }
             }
         },
+        "/api/carrito/obtenerCarritoUsuario/{id}": {
+            "get": {
+                "tags": ["Carrito"],
+                "summary": "Informacion asociada a la obtencion del Carrito de Compras de Cierto Usuario si tiene almacenada alguna planta en la Licoreria",
+                "description": "<p>Servicio que devuelve la información detallada del Carrito de Compras de cierto Usuario soliciado</p><p>&nbsp;</p><p><em><strong>¿Que Botellas tiene Almacenadas en su Carrito de Compras el Usuario de este id?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_planta": 3,
+                                    "nombre_usuario": "Joy",
+                                    "nombre_planta": "Sep",
+                                    "precio": 708.753
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Carrito"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "identificador del Usuario",
+                        "type": "number",
+                        "default": "1"
+                    }
+                ]
+            }
+        },
         "/api/carrito/eliminarDeCarrito/{id_usuario}/{id_planta}": {
             "delete": {
                 "tags": ["Carrito"],
@@ -1182,6 +1220,33 @@
                         "default": "6"
                     }
                 ]
+            }
+        },
+        "/api/ventas/UsuariosVentas/agregarPlantaVenta/": {
+            "post": {
+                "summary": "Agregando Venta",
+                "operationId": "create",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "Venta",
+                        "in": "body",
+                        "description": "Venta agregado",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UsuarioVenta"
+                        }
+                    }
+                ],
+                "tags": ["Usuarios_Ventas"],
+                "responses": {
+                    "200": {
+                        "description": "Venta insertada con exito"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
             }
         }
     },
@@ -1484,6 +1549,27 @@
                 "precio": {
                     "type": "number",
                     "description": "Precio de la planta"
+                }
+            }
+        },
+        "Carrito": {
+            "type": "object",
+            "properties": {
+                "id_planta": {
+                    "type": "number",
+                    "description": "Id de la planta"
+                },
+                "nombre_usuario": {
+                    "type": "string",
+                    "description": "Nombre del Usuario que compro la plamta"
+                },
+                "nombre_planta": {
+                    "type": "string",
+                    "description": "Nombre de la planta agregada al Carrito"
+                },
+                "precio": {
+                    "type": "number",
+                    "description": "Precio del Carrito"
                 }
             }
         }
